@@ -1,4 +1,4 @@
-# Multi-view Pig Posture Recognition: 4th Place Solution
+# Multi-view Pig Posture Recognition: Public LB 4th Place Solution
 
 ## Overview
 
