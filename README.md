@@ -1,9 +1,10 @@
-# Multi-view Pig Posture Recognition: Public LB 4th Place Solution
+# Multi-view Pig Posture Recognition: 3rd Place Solution
 
 ## Overview
 
 The core of this solution is a DINOv2 Giant (ViT-G/14) trained from its default pretrained weights for 5-class pig posture classification. Predictions are made at the individual pig instance level: each bounding box is cropped from the full image, padded, and resized to 224×224.
 
+Private score: **0.886** (T2), 3rd place.
 Public score: **0.878** (T2), 4th place.
 
 ## Model
@@ -36,7 +37,7 @@ Every other addition was evaluated incrementally, and each contributed a measura
 
 ## What I'd Do Differently
 
-I intentionally left K-Fold to the end, the plan was to finalize the model first and then run K-Fold on the best version since DINOv2-G training is slow. I got too focused on improving the model and by the time I remembered, there was little time left. The peak single-model score was 0.867 at epoch 28, and even with only 3 folds at 22 epochs due to the time constraint, K-Fold pushed the score up to 0.878. With 4-5 folds at the full 28 epochs the result would likely be higher.
+I intentionally left K-Fold to the end, the plan was to finalize the model first and then run K-Fold on the best version since DINOv2-G training is slow. I got too focused on improving the model and by the time I remembered, there was little time left. The peak single-model score was 0.867 at epoch 28, and even with only 3 folds at 22 epochs due to the time constraint, K-Fold pushed the score up to 0.878 which is a really good improvement for this competition. With 4-5 folds at the full 28 epochs the result would likely be higher.
 
 ## Hardware
 
@@ -44,24 +45,25 @@ NVIDIA A100-SXM4-40GB (42.4 GB VRAM).
 
 ## Running the Code
 
-The dataset should be placed at:
+Set your dataset path:
 
 ```
 DATA_ROOT  = Path("/root/.cache/kagglehub/competitions/multi-view-pig-posture-recognition/multiview_pig_posture_recognition")
 ```
 
-This path is set via `DATA_ROOT` in the script.
 
-For inference, 3 folds pretrained weights are loaded from my Kaggle dataset:
+For inference, run the 4th cell. it will download 3 folds pretrained weights from my Kaggle dataset.
+Then set the inference_only parameter to True in Args, and it will reproduce the submission in the OUT_DIR.
 
 ```
 OUT_DIR    = Path("/root/.cache/kagglehub/datasets/ramazanturann/pig-posture-prediction-dinov2g-3fold/versions/1")
 ```
 
-This path is set via `OUT_DIR` when running in inference mode. Submission files are also saved to this directory. In training notebook, i set `OUT_DIR` to `outputs`.
+Submission files are saved to OUT_DIR directory. In training notebook, i set `OUT_DIR = "outputs"` just for convenience.
 
-**train notebook and inference notebook is same, only difference is inference_only parameter set to True.**
+**train notebook and inference notebook is same, only difference is inference_only parameter set to True and 4th cell should be run.**
 
 ## Environment
 
 Google Colab PRO, A100 40GB. Train code runs with 38GB VRAM, Inference requires lower VRAM.
+3 folds with 22 epochs each and inference took about 12-14 hours.
