@@ -1,5 +1,9 @@
 # Multi-view Pig Posture Recognition: 3rd Place Solution
 
+<p align="center">
+  <img src="image.png" width="800" alt="Header">
+</p>
+
 ## Overview
 
 The core of this solution is a DINOv2 Giant (ViT-G/14) trained from its default pretrained weights for 5-class pig posture classification. Predictions are made at the individual pig instance level: each bounding box is cropped from the full image, padded, and resized to 224×224.
