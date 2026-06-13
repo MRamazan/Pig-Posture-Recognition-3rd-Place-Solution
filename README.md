@@ -1,7 +1,11 @@
 # Multi-view Pig Posture Recognition: 3rd Place Solution
 
 <p align="center">
-  <img src="image.png" width="1000" alt="Header">
+  <img src="validation_figure1.png" width="1000" alt="Header">
+</p>
+
+<p align="center">
+  <img src="validation_figure2.png" width="1000" alt="Header">
 </p>
 
 ## Overview
